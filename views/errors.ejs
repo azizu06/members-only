@@ -1,0 +1,7 @@
+<% if(local.errors){ %>
+<ul class="flex flex-col gap-0.5">
+  <% errors.forEach((e)=> { %>
+  <li><%= e.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
