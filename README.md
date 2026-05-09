@@ -1,1 +1,1 @@
-Creating mini message board to practice express and ejs
+Building exclusive clubhouse where your members can write anonymous posts to practice authentication skills.
