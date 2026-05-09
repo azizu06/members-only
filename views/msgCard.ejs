@@ -1,0 +1,22 @@
+<div class="flex flex-col">
+  <div class="w-fullm flex justify-center p-2">
+    <img src="<%= msg.image %>" class="border rounded-full" />
+  </div>
+  <div class="flex flex-col gap-2">
+    <div class="flex w-full justify-center">
+      <p><%= msg.title %></p>
+    </div>
+    <div class="flex flex-col gap-2">
+      <p><%= msg.text %></p>
+      <p>From: <%= user?.isMember ? msg.firstName + " " + msg.lastName : "*****" %></p>
+      <p>Sent: <%= user?.isMember ? msg.date : "*****" %></p>
+    </div>
+    <% if(user?.isAdmin){ %>
+      <div class="w-full flex justify-end">
+        <form action="/msg/:<%= msg.id %>/delete" method="post">
+          <button type="submit" class="w-full flex justify-center p-2">Delete</button>
+        </form>
+      </div>
+    <% } %>
+  </div>
+</div>

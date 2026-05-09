@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Join Club</title>
+  </head>
+  <body>
+    <div class="flex flex-col gap-4">
+      <div class="flex gap-5">
+        <div class="flex flex-col gap-5">
+          <h1>Become Member</h1>
+          <form action="/member" method="POST" class="flex flex-col gap-3">
+            <div class="flex flex-col gap-1">
+              <label for="memberSecret">Password</label>
+              <input
+                type="password"
+                name="memberSecret"
+                id="memberSecret"
+                required
+              />
+            </div>
+            <button type="submit" class="w-full flex justify-center p-2">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div class="flex flex-col gap-5">
+          <h1>Become Admin</h1>
+          <form action="/admin" method="POST" class="flex flex-col gap-3">
+            <div class="flex flex-col gap-1">
+              <label for="adminSecret">Password</label>
+              <input
+                type="password"
+                name="adminSecret"
+                id="adminSecret"
+                required
+              />
+            </div>
+            <button type="submit" class="w-full flex justify-center p-2">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="w-full flex justify-center p-2">
+        <a href="/">Go to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>
