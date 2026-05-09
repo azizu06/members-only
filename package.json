@@ -30,13 +30,17 @@
     "tailwindcss": "^4.2.2"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "concurrently": "^9.2.1",
+    "connect-pg-simple": "^10.0.0",
     "dotenv": "^17.4.2",
     "ejs": "^5.0.2",
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
     "lucide-react": "^1.8.0",
     "nodemon": "^3.1.14",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.20.0"
   }
 }
