@@ -8,38 +8,35 @@
   </head>
   <body>
     <%- include("navbar.ejs", {user}) %>
-    <div class="flex flex-col gap-4">
-      <div class="flex gap-5">
-        <div class="flex flex-col gap-5">
-          <h1>Become Member</h1>
+    <main class="app-main">
+      <h1 class="page-title">Join Club</h1>
+      <div class="join-grid">
+        <section class="join-panel">
+          <h2 class="message-title">Become Member</h2>
           <%- include("errors.ejs") %>
-          <form action="/member" method="post" class="flex flex-col gap-3">
-            <div class="flex flex-col gap-1">
-              <label for="secret">Password</label>
-              <input type="password" name="secret" id="secret" required />
+          <form action="/member" method="post" class="form-stack">
+            <div class="field-group">
+              <label for="secret" class="field-label">Password</label>
+              <input type="password" name="secret" id="secret" class="text-field" required />
             </div>
-            <button type="submit" class="w-full flex justify-center p-2">
-              Submit
-            </button>
+            <button type="submit" class="button-primary">Submit</button>
           </form>
-        </div>
-        <div class="flex flex-col gap-5">
-          <h1>Become Admin</h1>
+        </section>
+        <section class="join-panel">
+          <h2 class="message-title">Become Admin</h2>
           <%- include("errors.ejs") %>
-          <form action="/admin" method="post" class="flex flex-col gap-3">
-            <div class="flex flex-col gap-1">
-              <label for="secret">Password</label>
-              <input type="password" name="secret" id="secret" required />
+          <form action="/admin" method="post" class="form-stack">
+            <div class="field-group">
+              <label for="secret" class="field-label">Password</label>
+              <input type="password" name="secret" id="secret" class="text-field" required />
             </div>
-            <button type="submit" class="w-full flex justify-center p-2">
-              Submit
-            </button>
+            <button type="submit" class="button-primary">Submit</button>
           </form>
-        </div>
+        </section>
       </div>
-      <div class="w-full flex justify-center p-2">
-        <a href="/">Go to Dashboard</a>
+      <div class="form-footer">
+        <a href="/" class="text-link">Go to Dashboard</a>
       </div>
-    </div>
+    </main>
   </body>
 </html>
