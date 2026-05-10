@@ -1,3 +1,14 @@
+<%
+  const canSeeMessageMeta = user?.is_member;
+  const formattedDate = new Date(msg.created_at).toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+%>
+
 <article class="message-card">
   <div>
     <p class="message-avatar">
@@ -25,7 +36,7 @@
       </p>
       <p>
         <span class="meta-label">Sent:</span>
-        <%= user?.is_member ? msg.created_at : "*****" %>
+        <%= canSeeMessageMeta ? formattedDate : "*****" %>
       </p>
     </div>
   </div>
