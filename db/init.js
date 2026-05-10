@@ -26,7 +26,7 @@ const createTables = `
 `;
 
 const seedData = async (client) => {
-  const seedPassword = process.env.SEED_PASS || "pass@123";
+  const seedPassword = process.env.SEED_PASS || "password123";
   if (!process.env.SEED_PASS) {
     console.warn("SEED_PASS is not set. Using fallback seed password.");
   }

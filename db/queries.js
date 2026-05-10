@@ -70,10 +70,12 @@ exports.makeAdmin = async (id) => {
   await pool.query(
     `
       UPDATE member_users
-      SET is_admin = $1
-      WHERE id = $2
+      SET 
+        is_admin = $1,
+        is_member = $2
+      WHERE id = $3
     `,
-    [true, id],
+    [true, true, id],
   );
 };
 

@@ -21,13 +21,16 @@ exports.loginPost = [
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("login", { errors: errors.array() });
+      return res
+        .status(400)
+        .render("login", { errors: errors.array(), old: req.body });
     }
     return passport.authenticate("local", (err, user, info) => {
       if (err) return next(err);
       if (!user)
         return res.status(401).render("login", {
           errors: [{ msg: "Invalid username or password." }],
+          old: req.body,
         });
       req.login(user, (err) => {
         if (err) return next(err);
@@ -43,7 +46,9 @@ exports.singUpPost = [
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("signUp", { errors: errors.array() });
+      return res
+        .status(400)
+        .render("signUp", { errors: errors.array(), old: req.body });
     }
     try {
       const { password } = req.body;
@@ -52,9 +57,10 @@ exports.singUpPost = [
       res.redirect("/");
     } catch (err) {
       if (err.code === "23505")
-        return res
-          .status(409)
-          .render("signUp", { errors: [{ msg: "Username already exists." }] });
+        return res.status(409).render("signUp", {
+          errors: [{ msg: "Username already exists." }],
+          old: req.body,
+        });
       next(err);
     }
   },
@@ -111,7 +117,9 @@ exports.addMsgPost = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("addMsg", { errors: errors.array() });
+      return res
+        .status(400)
+        .render("addMsg", { errors: errors.array(), old: req.body });
     }
     await db.addMsg(req.body, req.user);
     res.redirect("/");
