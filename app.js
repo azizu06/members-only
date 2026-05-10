@@ -1,8 +1,8 @@
 const path = require("node:path");
 const express = require("express");
 const passport = require("./config/passport");
-const { Strategy } = require("passport-local");
 const session = require("express-session");
+const indexRouter = require("./routes/index");
 
 const app = express();
 
@@ -17,3 +17,4 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
+app.use("/", indexRouter);
