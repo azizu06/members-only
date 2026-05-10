@@ -26,7 +26,11 @@ const createTables = `
 `;
 
 const seedData = async (client) => {
-  const password = await bcrypt.hash("pass@123", 10);
+  if (!process.env.SEED_PASS) {
+    throw new Error("SEED_PASS must be set before running db:init");
+  }
+
+  const password = await bcrypt.hash(process.env.SEED_PASS, 10);
   const { rows } = await client.query(
     `
     INSERT INTO member_users

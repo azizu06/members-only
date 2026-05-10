@@ -13,11 +13,21 @@
       <div class="join-grid">
         <section class="join-panel">
           <h2 class="message-title">Become Member</h2>
+          <p class="form-hint">
+            Riddle: I am the house where members gather, stories stay inside,
+            and the door opens when you say my name.
+          </p>
           <%- include("errors.ejs") %>
           <form action="/member" method="post" class="form-stack">
             <div class="field-group">
               <label for="secret" class="field-label">Password</label>
-              <input type="password" name="secret" id="secret" class="text-field" required />
+              <input
+                type="password"
+                name="secret"
+                id="secret"
+                class="text-field"
+                required
+              />
             </div>
             <button type="submit" class="button-primary">Submit</button>
           </form>
@@ -28,7 +38,13 @@
           <form action="/admin" method="post" class="form-stack">
             <div class="field-group">
               <label for="secret" class="field-label">Password</label>
-              <input type="password" name="secret" id="secret" class="text-field" required />
+              <input
+                type="password"
+                name="secret"
+                id="secret"
+                class="text-field"
+                required
+              />
             </div>
             <button type="submit" class="button-primary">Submit</button>
           </form>
