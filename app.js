@@ -4,6 +4,9 @@ const express = require("express");
 const passport = require("./config/passport");
 const session = require("express-session");
 const indexRouter = require("./routes/index");
+const pool = require("./db/pool");
+const connectPg = require("connect-pg-simple");
+const pgSession = connectPg(session);
 
 const app = express();
 
@@ -11,6 +14,10 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(
   session({
+    store: new pgSession({
+      pool,
+      createTableIfMissing: true,
+    }),
     secret: process.env.SESSION_PASS,
     resave: false,
     saveUninitialized: false,
