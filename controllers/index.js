@@ -40,7 +40,7 @@ exports.singUpPost = [
     }
     try {
       const { password } = req.body;
-      const hashedPassword = await bcrypt.hash(password);
+      const hashedPassword = await bcrypt.hash(password, 10);
       await db.addUser(req.body, hashedPassword);
       res.redirect("/");
     } catch (err) {
