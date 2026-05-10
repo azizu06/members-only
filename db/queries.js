@@ -9,7 +9,14 @@ exports.findMsg = async (id) => {
 
 exports.getAllMsgs = async () => {
   const { rows } = await pool.query(
-    `SELECT m.*, u.* FROM messages m JOIN users u ON m.user_id = u.id`,
+    `
+    SELECT 
+      m.*,
+      u.first_name,
+      u.last_name 
+    FROM messages m 
+    JOIN users u ON m.user_id = u.id
+    `,
   );
   return rows;
 };
