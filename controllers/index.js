@@ -13,15 +13,15 @@ exports.homeGet = async (req, res) => {
 exports.loginGet = async (req, res) => res.render("login");
 exports.loginPost = [
   validateInputs,
-  async (req, res) => {
-    const errors = validationResult(errors);
+  async (req, res, next) => {
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("login", { errors: errors.array() });
     }
-    passport.authenticate("local", {
+    return passport.authenticate("local", {
       successRedirect: "/",
       failureRedirect: "/login",
-    });
+    })(req, res, next);
   },
 ];
 
@@ -29,7 +29,7 @@ exports.singUpGet = async (req, res) => res.render("signUp");
 exports.singUpPost = [
   validateInputs,
   async (req, res, next) => {
-    const errors = validationResult(errors);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("signUp", { errors: errors.array() });
     }
@@ -48,7 +48,7 @@ exports.joinGet = async (req, res) => res.render("join");
 exports.adminPost = [
   validateInputs,
   async (req, res) => {
-    const errors = validationResult(errors);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("join", { errors: errors.array() });
     }
@@ -66,7 +66,7 @@ exports.adminPost = [
 exports.memberPost = [
   validateInputs,
   async (req, res) => {
-    const errors = validationResult(errors);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("join", { errors: errors.array() });
     }
