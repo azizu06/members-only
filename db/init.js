@@ -1,8 +1,9 @@
 require("dotenv").config();
 const { Client } = require("pg");
+const bcrypt = require("bcryptjs");
 
 const createTables = `
-  DROP TABLE IF EXISTS messages;
+  DROP TABLE IF EXISTS member_messages;
   DROP TABLE IF EXISTS users;
   
   CREATE TABLE users (
@@ -15,7 +16,7 @@ const createTables = `
     is_admin BOOLEAN DEFAULT false
   );
 
-  CREATE TABLE messages (
+  CREATE TABLE member_messages (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     title TEXT,
     text TEXT,
@@ -23,6 +24,69 @@ const createTables = `
     user_id INTEGER REFERENCES users(id)
   );
 `;
+
+const seedData = async (client) => {
+  const password = await bcrypt.hash("password123", 10);
+  const { rows: users } = await client.query(
+    `
+    INSERT INTO users (first_name, last_name, username, password, is_member, is_admin)
+    VALUES
+      ($1, $2, $3, $4, $5, $6),
+      ($7, $8, $9, $10, $11, $12),
+      ($13, $14, $15, $16, $17, $18)
+    RETURNING id
+    `,
+    [
+      "Maya",
+      "Patel",
+      "maya",
+      password,
+      true,
+      false,
+      "Noah",
+      "Brooks",
+      "noah",
+      password,
+      true,
+      true,
+      "Lena",
+      "Torres",
+      "lena",
+      password,
+      false,
+      false,
+    ],
+  );
+
+  await client.query(
+    `
+    INSERT INTO member_messages (title, text, user_id)
+    VALUES
+      ($1, $2, $3),
+      ($4, $5, $6),
+      ($7, $8, $9),
+      ($10, $11, $12),
+      ($13, $14, $15)
+    `,
+    [
+      "Welcome to the clubhouse",
+      "First round is on the house. Keep the secrets inside.",
+      users[0].id,
+      "Late night deploy",
+      "The dashboard finally loaded without throwing a stack trace.",
+      users[1].id,
+      "Quiet announcement",
+      "Membership unlocks the names, but the stories stay interesting.",
+      users[0].id,
+      "Admin note",
+      "Delete powers are active, so use them carefully.",
+      users[1].id,
+      "Still outside",
+      "I can post, but I still need the passcode to see who wrote what.",
+      users[2].id,
+    ],
+  );
+};
 
 const main = async () => {
   const client = new Client({
@@ -33,6 +97,7 @@ const main = async () => {
   });
   await client.connect();
   await client.query(createTables);
+  await seedData(client);
   await client.end();
 };
 main();

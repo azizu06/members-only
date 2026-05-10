@@ -1,9 +1,10 @@
 const pool = require("./pool");
 
 exports.findMsg = async (id) => {
-  const { rows } = await pool.query(`SELECT * FROM messages WHERE id = $1`, [
-    id,
-  ]);
+  const { rows } = await pool.query(
+    `SELECT * FROM member_messages WHERE id = $1`,
+    [id],
+  );
   return rows[0];
 };
 
@@ -14,7 +15,7 @@ exports.getAllMsgs = async () => {
       m.*,
       u.first_name,
       u.last_name 
-    FROM messages m 
+    FROM member_messages m 
     JOIN users u ON m.user_id = u.id
     ORDER BY m.created_at DESC
     `,
@@ -37,14 +38,14 @@ exports.addMsg = async (info, user) => {
   const { title, message } = info;
   await pool.query(
     `
-    INSERT INTO messages (title, text, user_id) VALUES ($1, $2, $3)
+    INSERT INTO member_messages (title, text, user_id) VALUES ($1, $2, $3)
     `,
     [title, message, user.id],
   );
 };
 
 exports.deleteMsg = async (id) => {
-  await pool.query(`DELETE FROM messages WHERE id = $1`, [id]);
+  await pool.query(`DELETE FROM member_messages WHERE id = $1`, [id]);
 };
 
 exports.getUser = async (field) => {
