@@ -177,12 +177,12 @@ button {
 }
 
 .page-title {
-  margin: 0 0 20px;
+  margin: 0 0 24px;
   color: var(--text);
-  font-size: 28px;
+  font-size: clamp(26px, 4vw, 36px);
   font-weight: 650;
   letter-spacing: 0;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .message-list {
@@ -229,9 +229,9 @@ button {
 .message-title {
   margin: 0;
   color: var(--text);
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 650;
-  line-height: 1.35;
+  line-height: 1.25;
 }
 
 .message-text {
@@ -272,10 +272,32 @@ button {
   background: var(--surface);
 }
 
+.join-panel {
+  display: flex;
+  min-height: 292px;
+  flex-direction: column;
+}
+
+.join-panel-header {
+  min-height: 104px;
+}
+
+.form-hint {
+  max-width: 34rem;
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
 .form-stack {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
+}
+
+.join-panel .form-stack {
+  margin-top: auto;
 }
 
 .field-group {
@@ -286,14 +308,14 @@ button {
 
 .field-label {
   color: var(--text-muted);
-  font-size: 14px;
-  font-weight: 550;
+  font-size: 15px;
+  font-weight: 650;
 }
 
 .text-field {
   width: 100%;
-  min-height: 42px;
-  padding: 9px 11px;
+  min-height: 48px;
+  padding: 10px 12px;
   border: 1px solid var(--border-strong);
   border-radius: 8px;
   background: #101010;
@@ -321,8 +343,8 @@ textarea.text-field {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  min-height: 40px;
-  padding: 8px 13px;
+  min-height: 48px;
+  padding: 10px 14px;
   border: 1px solid transparent;
   border-radius: 8px;
   font-weight: 600;
@@ -381,7 +403,8 @@ textarea.text-field {
 .join-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  align-items: stretch;
+  gap: 18px;
 }
 
 .error-list {
@@ -457,5 +480,14 @@ textarea.text-field {
 
   .join-grid {
     grid-template-columns: 1fr;
+  }
+
+  .join-panel {
+    min-height: auto;
+  }
+
+  .join-panel-header {
+    min-height: auto;
+    margin-bottom: 18px;
   }
 }
