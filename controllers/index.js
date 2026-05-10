@@ -97,7 +97,7 @@ exports.addMsgPost = [
     if (!errors.isEmpty()) {
       return res.status(400).render("addMsg", { errors: errors.array() });
     }
-    await db.addMsg(req);
+    await db.addMsg(req.body, req.user);
     res.redirect("/");
   },
 ];

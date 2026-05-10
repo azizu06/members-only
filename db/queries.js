@@ -25,13 +25,13 @@ exports.addUser = async (info, password) => {
   );
 };
 
-exports.addMsg = async (info) => {
+exports.addMsg = async (info, user) => {
   const { title, message } = info;
   await pool.query(
     `
-    INSERT INTO messages (title, message) VALUES ($1, $2)
+    INSERT INTO messages (title, message, user_id) VALUES ($1, $2, $3)
     `,
-    [title, message],
+    [title, message, user.id],
   );
 };
 
