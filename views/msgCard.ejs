@@ -38,13 +38,17 @@
     <div class="message-meta">
       <p class="meta-item">
         <i data-lucide="user" class="icon" aria-hidden="true"></i>
-        <span class="meta-label">From:</span>
-        <%= user?.is_member ? msg.first_name + " " + msg.last_name : "*****" %>
+        <span class="meta-label">From</span>
+        <span class="meta-value">
+          <%= user?.is_member ? msg.first_name + " " + msg.last_name : "*****" %>
+        </span>
       </p>
       <p class="meta-item">
         <i data-lucide="clock" class="icon" aria-hidden="true"></i>
-        <span class="meta-label">Sent:</span>
-        <%= canSeeMessageMeta ? formattedDate : "*****" %>
+        <span class="meta-label">Sent</span>
+        <span class="meta-value">
+          <%= canSeeMessageMeta ? formattedDate : "*****" %>
+        </span>
       </p>
     </div>
   </div>

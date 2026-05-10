@@ -14,7 +14,7 @@
       <div class="join-grid">
         <section class="join-panel">
           <div class="join-panel-header">
-            <h2 class="message-title">Become Member</h2>
+            <h2 class="panel-title">Become a Member</h2>
             <p class="form-hint">
               Riddle: I speak without a mouth and hear without ears. I have no
               body, but I come alive with the wind.
@@ -22,11 +22,11 @@
           </div>
           <form action="/member" method="post" class="form-stack">
             <div class="field-group">
-              <label for="secret" class="field-label">Password</label>
+              <label for="memberSecret" class="field-label">Password</label>
               <input
                 type="password"
                 name="secret"
-                id="secret"
+                id="memberSecret"
                 class="text-field"
                 required
               />
@@ -39,18 +39,18 @@
         </section>
         <section class="join-panel">
           <div class="join-panel-header">
-            <h2 class="message-title">Become Admin</h2>
+            <h2 class="panel-title">Become an Admin</h2>
             <p class="form-hint">
               Use the admin password to unlock moderation access.
             </p>
           </div>
           <form action="/admin" method="post" class="form-stack">
             <div class="field-group">
-              <label for="secret" class="field-label">Password</label>
+              <label for="adminSecret" class="field-label">Password</label>
               <input
                 type="password"
                 name="secret"
-                id="secret"
+                id="adminSecret"
                 class="text-field"
                 required
               />
