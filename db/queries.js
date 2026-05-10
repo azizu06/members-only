@@ -16,6 +16,7 @@ exports.getAllMsgs = async () => {
       u.last_name 
     FROM messages m 
     JOIN users u ON m.user_id = u.id
+    ORDER BY m.created_at DESC
     `,
   );
   return rows;
