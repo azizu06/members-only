@@ -44,6 +44,10 @@ exports.singUpPost = [
       await db.addUser(req.body, hashedPassword);
       res.redirect("/");
     } catch (err) {
+      if (err.code === "23505")
+        return res
+          .status(409)
+          .render("signUp", { errors: [{ msg: "Username already exists." }] });
       next(err);
     }
   },
