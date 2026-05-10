@@ -1,6 +1,8 @@
 <div class="flex flex-col">
   <div class="w-fullm flex justify-center p-2">
-    <img src="<%= msg.image %>" class="border rounded-full" />
+    <p class="border rounded-full p-1">
+      <%= msg.first_name.charAt(0)+msg.last_name.charAt(0) %>
+    </p>
   </div>
   <div class="flex flex-col gap-2">
     <div class="flex w-full justify-center">
@@ -8,15 +10,20 @@
     </div>
     <div class="flex flex-col gap-2">
       <p><%= msg.text %></p>
-      <p>From: <%= user?.isMember ? msg.firstName + " " + msg.lastName : "*****" %></p>
-      <p>Sent: <%= user?.isMember ? msg.date : "*****" %></p>
+      <p>
+        From: <%= user?.is_member ? msg.first_name + " " + msg.last_name :
+        "*****" %>
+      </p>
+      <p>Sent: <%= user?.is_member ? msg.created_at : "*****" %></p>
     </div>
-    <% if(user?.isAdmin){ %>
-      <div class="w-full flex justify-end">
-        <form action="/msg/:<%= msg.id %>/delete" method="post">
-          <button type="submit" class="w-full flex justify-center p-2">Delete</button>
-        </form>
-      </div>
+    <% if(user?.is_admin){ %>
+    <div class="w-full flex justify-end">
+      <form action="/msg/:<%= msg.id %>/delete" method="post">
+        <button type="submit" class="w-full flex justify-center p-2">
+          Delete
+        </button>
+      </form>
+    </div>
     <% } %>
   </div>
 </div>
