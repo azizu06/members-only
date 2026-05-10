@@ -103,21 +103,22 @@ exports.addMsgPost = [
 ];
 
 exports.deleteMsgPost = async (req, res) => {
+  if (!req.user.is_admin) {
+    const messages = await db.getAllMsgs();
+    return res.status(403).render("index", {
+      messages,
+      errors: [{ msg: "You need admin permissions to delete messages." }],
+    });
+  }
+  const { id } = req.params;
+  await db.deleteMsg(id);
+  res.redirect("/");
+};
+
+exports.requireLogin = (req, res, next) => {
   if (!req.user)
     return res
       .status(401)
       .render("login", { errors: [{ msg: "Go login first." }] });
-  if (!req.user.is_admin) {
-    const messages = await db.getAllMsgs();
-    return res
-      .status(403)
-      .render("index", {
-        messages,
-        errors: [{ msg: "You need admin permissions to delete messages." }],
-      });
-  }
-
-  const { id } = req.params;
-  await db.deleteMsg(id);
-  res.redirect("/");
+  next();
 };
