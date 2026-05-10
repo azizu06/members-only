@@ -7,7 +7,7 @@
     <title>Messages</title>
   </head>
   <body>
-    <%- include("navbar.ejs", {user}) %>
+    <%- include("navbar.ejs") %>
     <div class="flex flex-col gap-4">
       <% messages.forEach((msg) => { %>
       <%- include("msgCard.ejs", {user, msg}) %>

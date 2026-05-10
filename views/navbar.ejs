@@ -1,7 +1,7 @@
 <nav class="flex justify-between">
   <h1>Clubhouse</h1>
   <div class="flex gap-2">
-    <% if(user){ %>
+    <% if(local.user){ %>
     <a href="/addMsg">Add Message</a>
     <button class="border rounded-full p-1" id="profileBtn">
       <%= user.firstName.charAt(0)+user.lastNmae.charAt(0) %>

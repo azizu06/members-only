@@ -12,6 +12,7 @@
       <div class="flex gap-5">
         <div class="flex flex-col gap-5">
           <h1>Become Member</h1>
+          <%- include("errors.ejs") %>
           <form action="/member" method="post" class="flex flex-col gap-3">
             <div class="flex flex-col gap-1">
               <label for="memberSecret">Password</label>
@@ -29,6 +30,7 @@
         </div>
         <div class="flex flex-col gap-5">
           <h1>Become Admin</h1>
+          <%- include("errors.ejs") %>
           <form action="/admin" method="post" class="flex flex-col gap-3">
             <div class="flex flex-col gap-1">
               <label for="adminSecret">Password</label>
