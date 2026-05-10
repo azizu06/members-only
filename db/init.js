@@ -26,11 +26,12 @@ const createTables = `
 `;
 
 const seedData = async (client) => {
+  const seedPassword = process.env.SEED_PASS || "pass@123";
   if (!process.env.SEED_PASS) {
-    throw new Error("SEED_PASS must be set before running db:init");
+    console.warn("SEED_PASS is not set. Using fallback seed password.");
   }
 
-  const password = await bcrypt.hash(process.env.SEED_PASS, 10);
+  const password = await bcrypt.hash(seedPassword, 10);
   const { rows } = await client.query(
     `
     INSERT INTO member_users
