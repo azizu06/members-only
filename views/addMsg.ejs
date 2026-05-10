@@ -26,8 +26,13 @@
           </div>
           <div class="field-group">
             <label for="message" class="field-label">Message</label>
-            <!-- prettier-ignore -->
-            <textarea name="message" id="message" class="text-field" required><%= locals.old ? old.message : '' %></textarea>
+            <textarea
+              name="message"
+              id="message"
+              class="text-field"
+              data-old-message="<%= locals.old ? old.message : '' %>"
+              required
+            ></textarea>
           </div>
           <button type="submit" class="button-primary">
             <i data-lucide="send" class="icon" aria-hidden="true"></i>
@@ -42,6 +47,12 @@
         </div>
       </div>
     </main>
+    <script>
+      const message = document.getElementById("message");
+      if (message) {
+        message.value = message.dataset.oldMessage;
+      }
+    </script>
     <%- include("lucide.ejs") %>
   </body>
 </html>
