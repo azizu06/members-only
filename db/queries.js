@@ -29,7 +29,7 @@ exports.addMsg = async (info, user) => {
   const { title, message } = info;
   await pool.query(
     `
-    INSERT INTO messages (title, message, user_id) VALUES ($1, $2, $3)
+    INSERT INTO messages (title, text, user_id) VALUES ($1, $2, $3)
     `,
     [title, message, user.id],
   );

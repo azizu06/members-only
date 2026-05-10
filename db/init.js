@@ -18,7 +18,7 @@ const createTables = `
   CREATE TABLE messages (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     title TEXT,
-    message TEXT,
+    text TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_id INTEGER REFERENCES users(id)
   );
