@@ -16,7 +16,7 @@ exports.getAllMsgs = async () => {
       u.first_name,
       u.last_name 
     FROM member_messages m 
-    JOIN users u ON m.user_id = u.id
+    JOIN member_users u ON m.user_id = u.id
     ORDER BY m.created_at DESC
     `,
   );
@@ -27,7 +27,7 @@ exports.addUser = async (info, password) => {
   const { firstName, lastName, username } = info;
   await pool.query(
     `
-    INSERT INTO users (first_name, last_name, username, password) 
+    INSERT INTO member_users (first_name, last_name, username, password) 
     VALUES ($1, $2, $3, $4)
     `,
     [firstName, lastName, username, password],
@@ -51,13 +51,14 @@ exports.deleteMsg = async (id) => {
 exports.getUser = async (field) => {
   let user;
   if (typeof field === "number") {
-    const { rows } = await pool.query(`SELECT * FROM users where id = $1`, [
-      field,
-    ]);
+    const { rows } = await pool.query(
+      `SELECT * FROM member_users where id = $1`,
+      [field],
+    );
     user = rows[0];
   } else {
     const { rows } = await pool.query(
-      `SELECT * FROM users where username = $1`,
+      `SELECT * FROM member_users where username = $1`,
       [field],
     );
     user = rows[0];
@@ -68,7 +69,7 @@ exports.getUser = async (field) => {
 exports.makeAdmin = async (id) => {
   await pool.query(
     `
-      UPDATE users
+      UPDATE member_users
       SET is_admin = $1
       WHERE id = $2
     `,
@@ -79,7 +80,7 @@ exports.makeAdmin = async (id) => {
 exports.makeMember = async (id) => {
   await pool.query(
     `
-      UPDATE users
+      UPDATE member_users
       SET is_member = $1
       WHERE id = $2
     `,

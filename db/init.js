@@ -4,9 +4,9 @@ const bcrypt = require("bcryptjs");
 
 const createTables = `
   DROP TABLE IF EXISTS member_messages;
-  DROP TABLE IF EXISTS users;
+  DROP TABLE IF EXISTS member_users;
   
-  CREATE TABLE users (
+  CREATE TABLE member_users (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     first_name TEXT,
     last_name TEXT,
@@ -21,16 +21,17 @@ const createTables = `
     title TEXT,
     text TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    user_id INTEGER REFERENCES users(id)
+    user_id INTEGER REFERENCES member_users(id)
   );
 `;
 
 const seedData = async (client) => {
-  const password = await bcrypt.hash("password123", 10);
-  const { rows: users } = await client.query(
+  const password = await bcrypt.hash("pass@123", 10);
+  const { rows } = await client.query(
     `
-    INSERT INTO users (first_name, last_name, username, password, is_member, is_admin)
-    VALUES
+    INSERT INTO member_users
+     (first_name, last_name, username, password, is_member, is_admin)
+    VALUES 
       ($1, $2, $3, $4, $5, $6),
       ($7, $8, $9, $10, $11, $12),
       ($13, $14, $15, $16, $17, $18)
@@ -71,19 +72,19 @@ const seedData = async (client) => {
     [
       "Welcome to the clubhouse",
       "First round is on the house. Keep the secrets inside.",
-      users[0].id,
+      rows[0].id,
       "Late night deploy",
       "The dashboard finally loaded without throwing a stack trace.",
-      users[1].id,
+      rows[1].id,
       "Quiet announcement",
       "Membership unlocks the names, but the stories stay interesting.",
-      users[0].id,
+      rows[0].id,
       "Admin note",
       "Delete powers are active, so use them carefully.",
-      users[1].id,
+      rows[1].id,
       "Still outside",
       "I can post, but I still need the passcode to see who wrote what.",
-      users[2].id,
+      rows[2].id,
     ],
   );
 };
