@@ -14,8 +14,8 @@ exports.getAllMsgs = async () => {
   return rows;
 };
 
-exports.addUser = async (info) => {
-  const { firstName, lastName, username, password } = info;
+exports.addUser = async (info, password) => {
+  const { firstName, lastName, username } = info;
   await pool.query(
     `
     INSERT INTO users (first_name, last_name, username, password) 
@@ -54,4 +54,26 @@ exports.getUser = async (field) => {
     user = rows[0];
   }
   return user;
+};
+
+exports.makeAdmin = async (id) => {
+  await pool.query(
+    `
+      UPDATE users
+      SET is_admin = $1
+      WHERE id = $2
+    `,
+    [true, id],
+  );
+};
+
+exports.makeMember = async (id) => {
+  await pool.query(
+    `
+      UPDATE users
+      SET is_member = $1
+      WHERE id = $2
+    `,
+    [true, id],
+  );
 };

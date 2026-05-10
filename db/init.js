@@ -11,6 +11,8 @@ const createTables = `
     last_name TEXT,
     username TEXT UNIQUE NOT NULL,
     password TEXT,
+    is_member BOOLEAN,
+    is_admin BOOLEAN
   )
 
   CREATE TABLE messages (
