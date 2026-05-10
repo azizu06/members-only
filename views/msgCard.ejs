@@ -1,12 +1,18 @@
 <article class="message-card">
   <div>
-    <p class="message-avatar"><%= msg.first_name.charAt(0)+msg.last_name.charAt(0) %></p>
+    <p class="message-avatar">
+      <%= msg.first_name.charAt(0)+msg.last_name.charAt(0) %>
+    </p>
   </div>
   <div class="message-content">
     <div class="message-title-row">
       <h2 class="message-title"><%= msg.title %></h2>
       <% if(user?.is_admin){ %>
-      <form action="/msg/<%= msg.id %>/delete" method="post" class="delete-form">
+      <form
+        action="/msg/<%= msg.id %>/delete"
+        method="post"
+        class="delete-form"
+      >
         <button type="submit" class="button-danger">Delete</button>
       </form>
       <% } %>

@@ -12,10 +12,9 @@
       <h1 class="page-title">Messages</h1>
       <%- include("errors.ejs") %>
       <div class="message-list">
-        <% if(messages.length){ %>
-      <% messages.forEach((msg) => { %>
-      <%- include("msgCard.ejs", {user, msg}) %>
-      <% }) %>
+        <% if(messages.length){ %> <% messages.forEach((msg) => { %>
+        <%- include("msgCard.ejs", {user, msg}) %>
+        <% }) %>
         <% } else { %>
         <p class="empty-state">No messages yet.</p>
         <% } %>
