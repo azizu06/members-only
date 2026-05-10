@@ -10,13 +10,13 @@ router.post("/login", controller.loginPost);
 router.get("/sign-up", controller.singUpGet);
 router.post("/sign-up", controller.singUpPost);
 
-router.post("logout", controller.logOutPost);
+router.post("/logout", controller.logOutPost);
 
 router.get("/join", controller.joinGet);
 router.post("/member", controller.memberPost);
 router.post("/admin", controller.adminPost);
 
 router.get("/add-msg", controller.addMsgGet);
-router.post("/add-msg", controller.addMsgGet);
+router.post("/add-msg", controller.addMsgPost);
 
 module.exports = router;
