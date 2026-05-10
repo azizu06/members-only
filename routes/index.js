@@ -19,4 +19,6 @@ router.post("/admin", controller.adminPost);
 router.get("/add-msg", controller.addMsgGet);
 router.post("/add-msg", controller.addMsgPost);
 
+router.post("/msg/:id/delete", controller.deleteMsgPost);
+
 module.exports = router;
