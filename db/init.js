@@ -2,8 +2,8 @@ require("dotenv").config();
 const { Client } = require("pg");
 
 const createTables = `
-  DROP TABLE IF EXISTS messages
-  DROP TABLE IF EXISTS users
+  DROP TABLE IF EXISTS messages;
+  DROP TABLE IF EXISTS users;
   
   CREATE TABLE users (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -11,16 +11,17 @@ const createTables = `
     last_name TEXT,
     username TEXT UNIQUE NOT NULL,
     password TEXT,
-    is_member BOOLEAN,
-    is_admin BOOLEAN
-  )
+    is_member BOOLEAN DEFAULT false,
+    is_admin BOOLEAN DEFAULT false
+  );
 
   CREATE TABLE messages (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     title TEXT,
     message TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_id INTEGER REFERENCES users(id)
-  )
+  );
 `;
 
 const main = async () => {
