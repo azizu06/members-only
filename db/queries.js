@@ -39,7 +39,19 @@ exports.deleteMsg = async (id) => {
   await pool.query(`DELETE FROM messages WHERE id = $1`, [id]);
 };
 
-exports.findUser = async (id) => {
-  const { rows } = await pool.query(`SELECT * FROM users where id = $1`, [id]);
-  return rows[0];
+exports.getUser = async (field) => {
+  let user;
+  if (typeof field === "number") {
+    const { rows } = await pool.query(`SELECT * FROM users where id = $1`, [
+      field,
+    ]);
+    user = rows[0];
+  } else {
+    const { rows } = await pool.query(
+      `SELECT * FROM users where username = $1`,
+      [field],
+    );
+    user = rows[0];
+  }
+  return user;
 };

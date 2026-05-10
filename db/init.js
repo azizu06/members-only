@@ -9,7 +9,7 @@ const createTables = `
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     first_name TEXT,
     last_name TEXT,
-    username TEXT,
+    username TEXT UNIQUE NOT NULL,
     password TEXT,
   )
 
