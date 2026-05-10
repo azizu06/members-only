@@ -1,7 +1,12 @@
 require("dotenv").config();
 const db = require("../db/queries");
 const { validationResult } = require("express-validator");
-const { validateInputs } = require("./validators");
+const {
+  validateAddMsg,
+  validateLogin,
+  validateSignUp,
+  validateSecret,
+} = require("./validators");
 const bcrypt = require("bcryptjs");
 const passport = require("../config/passport");
 
@@ -12,7 +17,7 @@ exports.homeGet = async (req, res) => {
 
 exports.loginGet = async (req, res) => res.render("login");
 exports.loginPost = [
-  validateInputs,
+  validateLogin,
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -27,7 +32,7 @@ exports.loginPost = [
 
 exports.singUpGet = async (req, res) => res.render("signUp");
 exports.singUpPost = [
-  validateInputs,
+  validateSignUp,
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -46,7 +51,7 @@ exports.singUpPost = [
 
 exports.joinGet = async (req, res) => res.render("join");
 exports.adminPost = [
-  validateInputs,
+  validateSecret,
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -64,7 +69,7 @@ exports.adminPost = [
   },
 ];
 exports.memberPost = [
-  validateInputs,
+  validateSecret,
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -91,7 +96,7 @@ exports.logOutPost = async (req, res, next) => {
 
 exports.addMsgGet = async (req, res) => res.render("addMsg");
 exports.addMsgPost = [
-  validateInputs,
+  validateAddMsg,
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
