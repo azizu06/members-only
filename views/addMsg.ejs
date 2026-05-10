@@ -20,24 +20,28 @@
               name="title"
               id="title"
               class="text-field"
+              value="<%= locals.old ? old.title : '' %>"
               required
             />
           </div>
           <div class="field-group">
             <label for="message" class="field-label">Message</label>
-            <textarea
-              name="message"
-              id="message"
-              class="text-field"
-              required
-            ></textarea>
+            <!-- prettier-ignore -->
+            <textarea name="message" id="message" class="text-field" required><%= locals.old ? old.message : '' %></textarea>
           </div>
-          <button type="submit" class="button-primary">Send</button>
+          <button type="submit" class="button-primary">
+            <i data-lucide="send" class="icon" aria-hidden="true"></i>
+            Send
+          </button>
         </form>
         <div class="form-footer">
-          <a href="/" class="text-link">Go to Dashboard</a>
+          <a href="/" class="text-link">
+            <i data-lucide="arrow-left" class="icon" aria-hidden="true"></i>
+            Go to Dashboard
+          </a>
         </div>
       </div>
     </main>
+    <%- include("lucide.ejs") %>
   </body>
 </html>

@@ -16,9 +16,13 @@
         <%- include("msgCard.ejs", {user, msg}) %>
         <% }) %>
         <% } else { %>
-        <p class="empty-state">No messages yet.</p>
+        <p class="empty-state">
+          <i data-lucide="message-square" class="icon" aria-hidden="true"></i>
+          No messages yet.
+        </p>
         <% } %>
       </div>
     </main>
+    <%- include("lucide.ejs") %>
   </body>
 </html>

@@ -23,18 +23,26 @@
         action="/msg/<%= msg.id %>/delete"
         method="post"
         class="delete-form"
+        onsubmit="
+          return confirm('Delete this message? This cannot be undone.');
+        "
       >
-        <button type="submit" class="button-danger">Delete</button>
+        <button type="submit" class="button-danger">
+          <i data-lucide="trash-2" class="icon" aria-hidden="true"></i>
+          Delete
+        </button>
       </form>
       <% } %>
     </div>
     <p class="message-text"><%= msg.text %></p>
     <div class="message-meta">
-      <p>
+      <p class="meta-item">
+        <i data-lucide="user" class="icon" aria-hidden="true"></i>
         <span class="meta-label">From:</span>
         <%= user?.is_member ? msg.first_name + " " + msg.last_name : "*****" %>
       </p>
-      <p>
+      <p class="meta-item">
+        <i data-lucide="clock" class="icon" aria-hidden="true"></i>
         <span class="meta-label">Sent:</span>
         <%= canSeeMessageMeta ? formattedDate : "*****" %>
       </p>

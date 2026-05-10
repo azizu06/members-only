@@ -20,6 +20,7 @@
               name="username"
               id="username"
               class="text-field"
+              value="<%= locals.old ? old.username : '' %>"
               required
             />
           </div>
@@ -33,13 +34,20 @@
               required
             />
           </div>
-          <button type="submit" class="button-primary">Login</button>
+          <button type="submit" class="button-primary">
+            <i data-lucide="log-in" class="icon" aria-hidden="true"></i>
+            Login
+          </button>
         </form>
         <div class="form-footer">
           <p>Don't have an account?</p>
-          <a href="/sign-up" class="text-link">Sign Up</a>
+          <a href="/sign-up" class="text-link">
+            <i data-lucide="user-plus" class="icon" aria-hidden="true"></i>
+            Sign Up
+          </a>
         </div>
       </div>
     </main>
+    <%- include("lucide.ejs") %>
   </body>
 </html>
