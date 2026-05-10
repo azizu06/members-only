@@ -1,29 +1,26 @@
-<div class="flex flex-col">
-  <div class="w-fullm flex justify-center p-2">
-    <p class="border rounded-full p-1">
-      <%= msg.first_name.charAt(0)+msg.last_name.charAt(0) %>
-    </p>
+<article class="message-card">
+  <div>
+    <p class="message-avatar"><%= msg.first_name.charAt(0)+msg.last_name.charAt(0) %></p>
   </div>
-  <div class="flex flex-col gap-2">
-    <div class="flex w-full justify-center">
-      <p><%= msg.title %></p>
-    </div>
-    <div class="flex flex-col gap-2">
-      <p><%= msg.text %></p>
-      <p>
-        From: <%= user?.is_member ? msg.first_name + " " + msg.last_name :
-        "*****" %>
-      </p>
-      <p>Sent: <%= user?.is_member ? msg.created_at : "*****" %></p>
-    </div>
-    <% if(user?.is_admin){ %>
-    <div class="w-full flex justify-end">
-      <form action="/msg/<%= msg.id %>/delete" method="post">
-        <button type="submit" class="w-full flex justify-center p-2">
-          Delete
-        </button>
+  <div class="message-content">
+    <div class="message-title-row">
+      <h2 class="message-title"><%= msg.title %></h2>
+      <% if(user?.is_admin){ %>
+      <form action="/msg/<%= msg.id %>/delete" method="post" class="delete-form">
+        <button type="submit" class="button-danger">Delete</button>
       </form>
+      <% } %>
     </div>
-    <% } %>
+    <p class="message-text"><%= msg.text %></p>
+    <div class="message-meta">
+      <p>
+        <span class="meta-label">From:</span>
+        <%= user?.is_member ? msg.first_name + " " + msg.last_name : "*****" %>
+      </p>
+      <p>
+        <span class="meta-label">Sent:</span>
+        <%= user?.is_member ? msg.created_at : "*****" %>
+      </p>
+    </div>
   </div>
-</div>
+</article>

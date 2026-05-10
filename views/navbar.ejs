@@ -1,24 +1,23 @@
-<nav class="flex justify-between">
-  <h1>Clubhouse</h1>
-  <div class="flex gap-2">
-    <% if(user){ %>
-    <a href="/add-msg">Add Message</a>
-    <button class="border rounded-full p-1" id="profileBtn">
-      <%= user.first_name.charAt(0)+user.last_name.charAt(0) %>
-    </button>
-    <div
-      id="dropdown"
-      class="absolute hidden right-0 mt-3 rounded-xl gap-2 flex-col"
-    >
-      <a href="/join">Join Club</a>
-      <form action="/logout" method="post">
-        <button type="submit">Logout</button>
-      </form>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand-link">Clubhouse</a>
+    <div class="nav-actions">
+      <% if(user){ %>
+      <a href="/add-msg" class="nav-link">Add Message</a>
+      <button class="profile-button" id="profileBtn" type="button">
+        <%= user.first_name.charAt(0)+user.last_name.charAt(0) %>
+      </button>
+      <div id="dropdown" class="profile-menu hidden flex-col">
+        <a href="/join" class="menu-link">Join Club</a>
+        <form action="/logout" method="post">
+          <button type="submit" class="menu-button">Logout</button>
+        </form>
+      </div>
+      <% } else { %>
+      <a href="/login" class="nav-link">Login</a>
+      <a href="/sign-up" class="nav-link">Sign Up</a>
+      <% } %>
     </div>
-    <% } else { %>
-    <a href="/login">Login</a>
-    <a href="/sign-up">Sign Up</a>
-    <% } %>
   </div>
 </nav>
 
