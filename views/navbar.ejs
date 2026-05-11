@@ -19,7 +19,7 @@
         aria-expanded="false"
         aria-controls="dropdown"
       >
-        <%= user.first_name.charAt(0)+user.last_name.charAt(0) %>
+        <%= (user.first_name.charAt(0)+user.last_name.charAt(0)).toUpperCase() %>
       </button>
       <div id="dropdown" class="profile-menu flex-col" aria-hidden="true">
         <a href="/join" class="menu-link">
