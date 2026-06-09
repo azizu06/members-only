@@ -6,9 +6,7 @@ members see who wrote them, and admins can delete messages.
 
 ## Preview
 
-> **TODO — add a screenshot.** Running locally requires a PostgreSQL database and
-> session setup (see below), so a live capture isn't included yet. Once running, capture
-> the message feed to `docs/assets/preview.png` and reference it here.
+![Members Only preview](docs/assets/preview.png)
 
 ## Features
 
